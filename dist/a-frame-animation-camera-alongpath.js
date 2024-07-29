@@ -60,7 +60,7 @@
        * Alongpath component for A-Frame.
        * Move Entities along a predefined Curve
        */
-      AFRAME.registerComponent("camera-alongpath", {
+      AFRAME.registerComponent("animation-camera-alongpath", {
         //dependencies: ['curve'],
 
         schema: {
@@ -159,11 +159,11 @@
                 var p = curve.getPoint(i);
                 this.el.setAttribute("position", p);
                 var tangent = curve.getTangentAt(i).normalize();
+                tangent.negate();
                 const lookAt = new THREE.Vector3().addVectors(p, tangent);
                 this.el.object3D.lookAt(lookAt);
               }
 
-           
               // Check for Active-Triggers
               if (this.triggers && this.triggers.length > 0) {
                 this.updateActiveTrigger();
